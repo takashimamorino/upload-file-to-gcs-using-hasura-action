@@ -1,6 +1,11 @@
-actions: []
+actions:
+- name: fileUpload
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:3000/api/file-upload
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+  - name: FileOutput
   scalars: []

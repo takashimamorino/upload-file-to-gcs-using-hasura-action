@@ -1,2 +1,13 @@
+type Mutation {
+  fileUpload (
+    file: String!
+  ): FileOutput
+}
 
+
+
+
+type FileOutput {
+  filePath : String!
+}
 
