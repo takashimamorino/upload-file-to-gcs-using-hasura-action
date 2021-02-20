@@ -6,7 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "function:dev": "yarn workspace function dev"
+    "function:dev": "yarn workspace function dev",
+    "hasura:start": "yarn workspace hasura start",
+    "hasura:down": "yarn workspace hasura down",
+    "hasura:console": "yarn workspace hasura console"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
