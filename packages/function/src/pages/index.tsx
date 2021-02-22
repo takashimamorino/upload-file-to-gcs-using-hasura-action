@@ -17,11 +17,10 @@ const COMMENTS = gql`
   }
 `;
 
-const CREATE_COMMENT = gql`
-  mutation CreateComment($value: String!) {
-    insert_comment_one(object: { value: $value }) {
-      id
-      value
+const FILE_IPLOAD = gql`
+  mutation FileUpload($value: String!) {
+    fileUpload(file: $value) {
+      filePath
     }
   }
 `;
@@ -29,12 +28,10 @@ const CREATE_COMMENT = gql`
 const TopPage: NextPage = () => {
   const [value, setValue] = useState<string>("");
   const { data } = useQuery(COMMENTS);
-  const [createComment] = useMutation(CREATE_COMMENT, {
-    refetchQueries: [{ query: COMMENTS }],
-  });
+  const [fileUpload] = useMutation(FILE_IPLOAD);
 
   const handleSubmit = (value: string) => {
-    createComment({ variables: { value } });
+    fileUpload({ variables: { value }, refetchQueries: [{ query: COMMENTS }] });
     setValue("");
   };
 

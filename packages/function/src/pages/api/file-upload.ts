@@ -1,7 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { file } = req.body.input
 
-  res.status(200).json({ filePath: file })
+  const CREATE_COMMENT = `
+    mutation CreateComment($value: String!) {
+      insert_comment_one(object: { value: $value }) {
+        id
+        value
+      }
+    }
+  `;
+
+  const variables = { value: file };
+  await fetch(
+    "http://localhost:8080/v1/graphql",
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        query: CREATE_COMMENT,
+        variables
+      })
+    }
+  )
+  .then(res => res.json())
+  .then(res => console.log(res.data));
 }
