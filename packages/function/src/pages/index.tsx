@@ -40,7 +40,7 @@ const TopPage: NextPage = () => {
       {data?.comment.map(({ id, value }) => (
         <span key={id} dangerouslySetInnerHTML={{ __html: value }} />
       ))}
-      <p>testa</p>
+      <p>testaa</p>
 
       <ReactQuillWithNoSSR theme="snow" value={value} onChange={setValue} />
       <button onClick={() => handleSubmit(value)}>追加</button>
